@@ -1,0 +1,10 @@
+#Compilation
+*.o
+*.a
+
+#Configuration & IDE
+.vscode/
+.DS_Store
+
+#Miscellaneous
+*.txt
