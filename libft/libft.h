@@ -6,7 +6,7 @@
 /*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 10:46:35 by ppaquet           #+#    #+#             */
-/*   Updated: 2024/02/21 21:45:51 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/02/22 12:26:23 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,6 @@ t_dbl_list	*ft_dbl_lstlast(t_dbl_list *here);
 t_dbl_list	*ft_dbl_lstfirst(t_dbl_list *here);
 size_t		ft_dbl_lstsize(t_dbl_list	*from);
 t_dbl_list	*ft_dbl_lstadd_back(t_dbl_list **head, t_dbl_list *new_node);
+t_dbl_list	*ft_dbl_lstadd_front(t_dbl_list **head, t_dbl_list *new_node);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:31:58 by ppaquet           #+#    #+#             */
-/*   Updated: 2024/02/21 21:42:09 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/02/22 12:33:08 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,13 +30,16 @@ int main(void)
 	char string[25] = "This is a test";
 	char string2[25] = "This is a second string!";
 	char string3[25] = "Third string here...";
+	char string4[25] = "NEW! Node at first!!!";
 		
 	test = NULL;
 	// test = ft_dbl_lstnew((void *)string);
-	ft_dbl_lstadd_back( NULL, ft_dbl_lstnew((void *)string));
+	
+	ft_dbl_lstadd_back( &test, ft_dbl_lstnew((void *)string));
 	
 	ft_dbl_lstadd_back(&test, ft_dbl_lstnew((void *)string2));
 	ft_dbl_lstadd_back(&test, ft_dbl_lstnew((void *)string3));
+	ft_dbl_lstadd_front(&test, ft_dbl_lstnew((void *)string4));
 	while (test != NULL)
 	{
 		printf("CONTENT: %s\n", (char *)test->content);
