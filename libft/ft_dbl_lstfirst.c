@@ -1,28 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_dbl_lstfirst.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/13 12:14:33 by ppaquet           #+#    #+#             */
-/*   Updated: 2024/02/21 20:18:32 by ppaquet          ###   ########.fr       */
+/*   Created: 2024/02/21 20:51:15 by ppaquet           #+#    #+#             */
+/*   Updated: 2024/02/21 20:56:08 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"libft.h"
-#include	<stdint.h>
+#include "libft.h"
 
-void	*ft_calloc(size_t count, size_t size)
+t_dbl_list	*ft_dbl_lstfirst(t_dbl_list *here)
 {
-	void	*ptr;
-
-	if (count >= SIZE_MAX || size >= SIZE_MAX)
+	t_dbl_list	*iterator;
+	
+	iterator = here;
+	if (here == NULL)
 		return (NULL);
-	ptr = malloc(count * size);
-	if (ptr == NULL)
-		return (NULL);
-	else
-		ft_bzero(ptr, count * size);
-	return (ptr);
+	while (iterator->previous != NULL)
+		iterator = iterator->previous;
+	return (iterator);
 }

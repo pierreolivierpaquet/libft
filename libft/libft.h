@@ -3,27 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaquet <marvin@42quebec.com>              +#+  +:+       +#+        */
+/*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 10:46:35 by ppaquet           #+#    #+#             */
-/*   Updated: 2023/02/14 10:46:38 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/02/21 21:45:51 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <unistd.h>
-# include <stdlib.h>
+# include	<unistd.h>
+# include	<stdlib.h>
+# include	<stdio.h> // printf()
 
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}					t_list;
-int		ft_atoi(const char *str);
+/***************************** MEMORY ALLOCATION ******************************/
+
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t count, size_t size);
+
+///------------------------------------------------------------ @category ADDONS 
+
+/// @brief Type of memory allocation.
+typedef enum s_alloc_type
+{
+	CALLOC,
+	MALLOC
+}	e_alloc_type;
+
+#ifndef		TRY_ALLOC
+# define	TRY_ALLOC	10000
+#endif	/*	TRY_ALLOC	*/
+
+void	*ft_alloc(e_alloc_type type, size_t count, size_t size, void **store);
+
+/******************************************************************************/
+
+int		ft_atoi(const char *str);
 int		ft_isalnum(int c);
 int		ft_isalpha(int c);
 int		ft_isascii(int c);
@@ -56,6 +72,15 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+
+/******************************** LINKED LIST *********************************/
+
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}					t_list;
+
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
@@ -65,5 +90,21 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+///------------------------------------------------------------ @category ADDONS 
+
+/// @brief Double linked list.
+typedef struct s_dbl_list
+{
+	void				*content;
+	struct s_dbl_list	*next;
+	struct s_dbl_list	*previous;
+}						t_dbl_list;
+
+t_dbl_list	*ft_dbl_lstnew(void *content);
+t_dbl_list	*ft_dbl_lstlast(t_dbl_list *here);
+t_dbl_list	*ft_dbl_lstfirst(t_dbl_list *here);
+size_t		ft_dbl_lstsize(t_dbl_list	*from);
+t_dbl_list	*ft_dbl_lstadd_back(t_dbl_list **head, t_dbl_list *new_node);
 
 #endif

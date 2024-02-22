@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ppaquet <marvin@42quebec.com>              +#+  +:+       +#+         #
+#    By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 10:45:50 by ppaquet           #+#    #+#              #
-#    Updated: 2023/02/14 10:45:56 by ppaquet          ###   ########.fr        #
+#    Updated: 2024/02/21 19:32:42 by ppaquet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,6 +56,9 @@ ft_itoa.c \
 ft_striteri.c \
 ft_strmapi.c \
 ft_split.c \
+\
+ft_alloc \
+ft_dbl_lstnew.c \
 
 SRCS_BONUS = \
 ft_lstnew.c \
