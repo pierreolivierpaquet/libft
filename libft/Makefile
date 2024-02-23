@@ -6,7 +6,7 @@
 #    By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 10:45:50 by ppaquet           #+#    #+#              #
-#    Updated: 2024/02/22 12:25:59 by ppaquet          ###   ########.fr        #
+#    Updated: 2024/02/22 21:52:23 by ppaquet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,13 +57,16 @@ ft_striteri.c \
 ft_strmapi.c \
 ft_split.c \
 \
-ft_alloc \
-ft_dbl_lstnew.c \
-ft_dbl_lstlast.c \
-ft_dbl_lstfirst.c \
-ft_dbl_lstsize.c \
-ft_dbl_lstadd_back.c \
-ft_dbl_lstadd_front.c \
+ft_alloc.c \
+ft_dlstnew.c \
+ft_dlstlast.c \
+ft_dlstfirst.c \
+ft_dlstsize.c \
+ft_dlstadd_back.c \
+ft_dlstadd_front.c \
+ft_dlstdel_one.c \
+ft_dlst_detach.c \
+ft_dlst_clear.c \
 
 SRCS_BONUS = \
 ft_lstnew.c \

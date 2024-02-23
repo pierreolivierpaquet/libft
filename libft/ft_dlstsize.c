@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dbl_lstfirst.c                                  :+:      :+:    :+:   */
+/*   ft_dlstsize.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/21 20:51:15 by ppaquet           #+#    #+#             */
-/*   Updated: 2024/02/21 20:56:08 by ppaquet          ###   ########.fr       */
+/*   Created: 2024/02/21 20:57:33 by ppaquet           #+#    #+#             */
+/*   Updated: 2024/02/22 18:56:51 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_dbl_list	*ft_dbl_lstfirst(t_dbl_list *here)
+size_t	ft_dlstsize(t_dlist *from)
 {
-	t_dbl_list	*iterator;
-	
-	iterator = here;
-	if (here == NULL)
-		return (NULL);
-	while (iterator->previous != NULL)
-		iterator = iterator->previous;
-	return (iterator);
+	t_dlist	*iterator;
+	size_t		size;
+
+	iterator = from;
+	size = 0;
+	if (from == NULL)
+		return (size);
+	while (size++ && iterator->next != NULL)
+		iterator = iterator->next;
+	return (size);
 }

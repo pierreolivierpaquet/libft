@@ -6,7 +6,7 @@
 /*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 10:46:35 by ppaquet           #+#    #+#             */
-/*   Updated: 2024/02/22 12:26:23 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/02/22 22:06:25 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include	<unistd.h>
 # include	<stdlib.h>
 # include	<stdio.h> // printf()
+# include	<stdbool.h>
 
 /***************************** MEMORY ALLOCATION ******************************/
 
@@ -35,7 +36,16 @@ typedef enum s_alloc_type
 # define	TRY_ALLOC	10000
 #endif	/*	TRY_ALLOC	*/
 
-void	*ft_alloc(e_alloc_type type, size_t count, size_t size, void **store);
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}					t_list;
+
+typedef t_list* (*mem_track)(void *);
+
+t_list	*ft_alloc_tracker(void *newly_allocated);
+void	*ft_alloc(e_alloc_type type, size_t count, size_t size, mem_track func);
 
 /******************************************************************************/
 
@@ -75,11 +85,6 @@ void	ft_putnbr_fd(int n, int fd);
 
 /******************************** LINKED LIST *********************************/
 
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}					t_list;
 
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
@@ -94,18 +99,23 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 ///------------------------------------------------------------ @category ADDONS 
 
 /// @brief Double linked list.
-typedef struct s_dbl_list
+typedef struct s_dlist
 {
-	void				*content;
-	struct s_dbl_list	*next;
-	struct s_dbl_list	*previous;
-}						t_dbl_list;
+	void			*content;
+	struct s_dlist	*next;
+	struct s_dlist	*previous;
+}					t_dlist;
 
-t_dbl_list	*ft_dbl_lstnew(void *content);
-t_dbl_list	*ft_dbl_lstlast(t_dbl_list *here);
-t_dbl_list	*ft_dbl_lstfirst(t_dbl_list *here);
-size_t		ft_dbl_lstsize(t_dbl_list	*from);
-t_dbl_list	*ft_dbl_lstadd_back(t_dbl_list **head, t_dbl_list *new_node);
-t_dbl_list	*ft_dbl_lstadd_front(t_dbl_list **head, t_dbl_list *new_node);
+t_dlist	*ft_dlstnew(void *content);
+t_dlist	*ft_dlstlast(t_dlist *here);
+t_dlist	*ft_dlstfirst(t_dlist *here);
+size_t	ft_dlstsize(t_dlist	*from);
+t_dlist	*ft_dlstadd_back(t_dlist **head, t_dlist *new_node);
+t_dlist	*ft_dlstadd_front(t_dlist **head, t_dlist *new_node);
+
+typedef void	(*ft_free)(void *);
+void	*ft_dlstdel_one(t_dlist **delete, ft_free func);
+void	*ft_dlst_detach(t_dlist **head, t_dlist *detach, ft_free func);
+void	ft_dlst_clear(t_dlist **head, ft_free func);
 
 #endif
