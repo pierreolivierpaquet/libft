@@ -6,7 +6,7 @@
 /*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 19:23:18 by ppaquet           #+#    #+#             */
-/*   Updated: 2024/02/22 21:57:17 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/02/23 22:21:41 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,23 @@
 int main(void)
 {
 	t_dlist *test;
-	void *one;
-	void *two;
-	void *three;
-	void *four;
+	char *one;
+	char *two;
+	char *three;
+	char *four;
 	
-	one = malloc(1);
-	two = malloc(1);
-	three = malloc(1);
-	four = malloc(1);
+	one = ft_strdup("1");
+	two = ft_strdup("22");
+	three = ft_strdup("333");
+	four = ft_strdup("4444");
 	test = NULL;
 	
-	ft_alloc_tracker(NULL);
-	ft_dlstadd_back( &test, ft_dlstnew(one));
-	ft_dlstadd_back(&test, ft_dlstnew(two));
-	ft_dlstadd_back(&test, ft_dlstnew(three));
-	ft_dlstadd_front(&test, ft_dlstnew(four));
+	ft_dlstadd_back( &test, ft_dlstnew(one, ft_strlen(one), ft_alloc_tracker));
+	ft_dlstadd_back(&test, ft_dlstnew(two, ft_strlen(two), ft_alloc_tracker));
+	ft_dlstadd_back(&test, ft_dlstnew(three, ft_strlen(three), ft_alloc_tracker));
+	ft_dlstadd_front(&test, ft_dlstnew(four, ft_strlen(four), ft_alloc_tracker));
 
-	ft_dlst_clear(&test, free);
+	ft_dlst_clear(&test, ft_safe_free);
 
 	while (test != NULL)
 	{

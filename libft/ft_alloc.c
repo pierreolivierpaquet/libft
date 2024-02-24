@@ -6,7 +6,7 @@
 /*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:00:03 by ppaquet           #+#    #+#             */
-/*   Updated: 2024/02/22 21:35:17 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/02/23 22:15:31 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,27 @@
 ///			the allocated memory.
 /// @param newly_allocated If NULL, the function acts like a getter.
 /// @returns A pointer to the first node of the memory tracker linked list.
-t_list *ft_alloc_tracker(void *newly_allocated)
+t_dlist *ft_alloc_tracker(void *newly_allocated, size_t size, bool destroy)
 {
-	static t_list *tracker;
+	static t_dlist *tracker;
 
 	if (tracker == NULL)
 	{
 		tracker = ft_alloc(CALLOC, 1, sizeof(*tracker), NULL);
 		
 		if (tracker != NULL)
+		{
 			tracker->content = newly_allocated;
+			tracker->size = size;
+		}
 		return (tracker);
 	}
+	if (newly_allocated == NULL && destroy == true)
+		return (ft_dlst_clear(&tracker, ft_safe_free), NULL);
 	if (tracker->content == NULL && newly_allocated != NULL)
 		tracker->content = newly_allocated;
 	else if (newly_allocated != NULL)
-		ft_lstadd_back(&tracker, ft_lstnew(newly_allocated));
+		ft_dlstadd_back(&tracker, ft_dlstnew(newly_allocated, size, NULL));
 	return (tracker);
 }
 
@@ -58,6 +63,6 @@ void	*ft_alloc(e_alloc_type type, size_t count, size_t size, mem_track func)
 			ptr = (void *)malloc(count * size);	
 	}
 	if (ptr != NULL && func != NULL)
-		func(ptr);
+		func(ptr, count * size, false);
 	return (ptr);
 }

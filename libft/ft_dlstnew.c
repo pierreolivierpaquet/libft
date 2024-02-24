@@ -6,21 +6,22 @@
 /*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:31:58 by ppaquet           #+#    #+#             */
-/*   Updated: 2024/02/22 21:16:19 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/02/23 22:12:54 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_dlist	*ft_dlstnew( void *content)
+t_dlist	*ft_dlstnew( void *content, size_t size, mem_track func)
 {
 	t_dlist	*new;
 
 	new = NULL;
-	new = ft_alloc(CALLOC, 1, sizeof(t_dlist), ft_alloc_tracker);
+	new = ft_alloc(CALLOC, 1, sizeof(*new), func);
 	if (new == NULL)
 		return (NULL);
 	new->content = content;
+	new->size = size;
 	return (new);
 }
 
