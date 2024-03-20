@@ -6,7 +6,7 @@
 /*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:00:03 by ppaquet           #+#    #+#             */
-/*   Updated: 2024/02/23 22:15:31 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/03/20 22:40:55 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,20 +49,21 @@ t_dlist *ft_alloc_tracker(void *newly_allocated, size_t size, bool destroy)
 /// @returns The newly allocated pointer.
 void	*ft_alloc(e_alloc_type type, size_t count, size_t size, mem_track func)
 {
-	void	*ptr = NULL;
+	void	*new_pointer;
 	int		tries;
 
+	new_pointer = NULL;
 	if (count == 0 || size == 0)
 		return (NULL);
 	tries = -1;
-	while (ptr == NULL && ++tries < TRY_ALLOC)
+	while (new_pointer == NULL && ++tries < TRY_ALLOC)
 	{
 		if (type == CALLOC)
-			ptr = ft_calloc(count, size);
+			new_pointer = ft_calloc(count, size);
 		else
-			ptr = (void *)malloc(count * size);	
+			new_pointer = (void *)malloc(count * size);	
 	}
-	if (ptr != NULL && func != NULL)
-		func(ptr, count * size, false);
-	return (ptr);
+	if (new_pointer != NULL && func != NULL)
+		func(new_pointer, count * size, false);
+	return (new_pointer);
 }
