@@ -6,7 +6,7 @@
 /*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:00:03 by ppaquet           #+#    #+#             */
-/*   Updated: 2024/03/20 22:40:55 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/03/21 00:52:09 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_dlist *ft_alloc_tracker(void *newly_allocated, size_t size, bool destroy)
 	if (tracker == NULL)
 	{
 		tracker = ft_alloc(CALLOC, 1, sizeof(*tracker), NULL);
-		
+
 		if (tracker != NULL)
 		{
 			tracker->content = newly_allocated;
@@ -38,6 +38,22 @@ t_dlist *ft_alloc_tracker(void *newly_allocated, size_t size, bool destroy)
 	else if (newly_allocated != NULL)
 		ft_dlstadd_back(&tracker, ft_dlstnew(newly_allocated, size, NULL));
 	return (tracker);
+}
+
+void	*ft_alloc_tracker_destroy( void )
+{
+	t_dlist	*retrieve_tracker;
+	t_dlist	*to_free;
+
+	retrieve_tracker = ft_alloc_tracker(NULL, 0, 0);
+	while (retrieve_tracker != NULL)
+	{
+		to_free = retrieve_tracker;
+		retrieve_tracker = retrieve_tracker->next;
+		ft_safe_free(&(to_free->content), to_free->size, false);
+		ft_safe_free((void *)&to_free, sizeof(*to_free), false);
+	}
+	return (NULL);
 }
 
 /// @brief Custom allocation function.

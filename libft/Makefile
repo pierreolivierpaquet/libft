@@ -6,13 +6,13 @@
 #    By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 10:45:50 by ppaquet           #+#    #+#              #
-#    Updated: 2024/02/23 18:34:39 by ppaquet          ###   ########.fr        #
+#    Updated: 2024/03/20 23:44:25 by ppaquet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 
-CC = gcc
+CC = gcc -g
 
 CFLAGS = -Wall -Werror -Wextra
 

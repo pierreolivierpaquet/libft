@@ -6,7 +6,7 @@
 /*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 10:46:35 by ppaquet           #+#    #+#             */
-/*   Updated: 2024/03/20 22:36:34 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/03/20 23:38:17 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,9 @@ typedef struct s_dlist
 typedef t_dlist *(*mem_track)(void *, size_t n, bool no);
 void	*ft_alloc(e_alloc_type type, size_t count, size_t size, mem_track func);
 t_dlist	*ft_alloc_tracker(void *newly_allocated, size_t size, bool destroy);
+void	*ft_alloc_tracker_destroy( void );
 
-t_dlist	*ft_dlstnew(void *content, size_t size,mem_track func);
+t_dlist	*ft_dlstnew(void *content, size_t size, mem_track func);
 t_dlist	*ft_dlstlast(t_dlist *here);
 t_dlist	*ft_dlstfirst(t_dlist *here);
 size_t	ft_dlstsize(t_dlist	*from);

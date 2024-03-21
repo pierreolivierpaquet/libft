@@ -6,7 +6,7 @@
 /*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 19:23:18 by ppaquet           #+#    #+#             */
-/*   Updated: 2024/02/23 22:21:41 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/03/21 00:52:31 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,19 @@ int main(void)
 	char *two;
 	char *three;
 	char *four;
-	
+
 	one = ft_strdup("1");
+	printf("%p\n", one);
 	two = ft_strdup("22");
 	three = ft_strdup("333");
 	four = ft_strdup("4444");
 	test = NULL;
-	
+
 	ft_dlstadd_back( &test, ft_dlstnew(one, ft_strlen(one), ft_alloc_tracker));
 	ft_dlstadd_back(&test, ft_dlstnew(two, ft_strlen(two), ft_alloc_tracker));
 	ft_dlstadd_back(&test, ft_dlstnew(three, ft_strlen(three), ft_alloc_tracker));
 	ft_dlstadd_front(&test, ft_dlstnew(four, ft_strlen(four), ft_alloc_tracker));
 
-	ft_dlst_clear(&test, ft_safe_free);
-
-	while (test != NULL)
-	{
-		printf("CONTENT: %s\n", (char *)test->content);
-		test = test->next;
-	}
+	ft_alloc_tracker_destroy();
 	return (0);
 }
