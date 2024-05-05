@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaquet <marvin@42quebec.com>              +#+  +:+       +#+        */
+/*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 15:09:36 by ppaquet           #+#    #+#             */
-/*   Updated: 2023/02/27 15:09:43 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/05/04 22:32:30 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content)
+t_list	*ft_lstnew(void *content, gc func)
 {
 	t_list	*head;
 
-	head = (t_list *)malloc(sizeof(*head));
+	head = (t_list *)ft_alloc(CALLOC, 1, sizeof(*head), func);
 	if (!head)
 		return (NULL);
 	(*head).content = content;

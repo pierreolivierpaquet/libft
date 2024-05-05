@@ -6,13 +6,13 @@
 /*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:14:57 by ppaquet           #+#    #+#             */
-/*   Updated: 2024/03/20 23:44:15 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/05/04 20:40:28 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+char	*ft_strdup(const char *s1, gc func)
 {
 	char	*copie;
 	size_t	l;
@@ -20,8 +20,8 @@ char	*ft_strdup(const char *s1)
 	if (!s1)
 		return (NULL);
 	l = ft_strlen(s1) + 1;
-	// copie = (char *)malloc(l * sizeof(*copie));
-	copie = (char *)ft_alloc(CALLOC, l, sizeof(*copie), &ft_alloc_tracker);
+
+	copie = (char *)ft_alloc(CALLOC, l, sizeof(*copie), func);
 	if (copie == NULL)
 		return (NULL);
 	else

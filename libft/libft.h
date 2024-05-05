@@ -6,7 +6,7 @@
 /*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 10:46:35 by ppaquet           #+#    #+#             */
-/*   Updated: 2024/03/20 23:38:17 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/05/04 23:54:41 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t count, size_t size);
 
-///------------------------------------------------------------ @category ADDONS 
+///------------------------------------------------------------ @category ADDONS
 
 /// @brief Type of memory allocation.
 typedef enum s_alloc_type
@@ -46,14 +46,14 @@ typedef struct s_dlist
 	struct s_dlist	*previous;
 }					t_dlist;
 
-typedef t_dlist *(*mem_track)(void *, size_t n, bool no);
-void	*ft_alloc(e_alloc_type type, size_t count, size_t size, mem_track func);
-t_dlist	*ft_alloc_tracker(void *newly_allocated, size_t size, bool destroy);
-void	*ft_alloc_tracker_destroy( void );
+typedef t_dlist *(*gc)(void *, size_t n);
+void	*ft_alloc(e_alloc_type type, size_t count, size_t size, gc func);
+t_dlist	*ft_gc(void *newly_allocated, size_t size);
+void	*ft_gc_destroy( void );
 
-t_dlist	*ft_dlstnew(void *content, size_t size, mem_track func);
-t_dlist	*ft_dlstlast(t_dlist *here);
-t_dlist	*ft_dlstfirst(t_dlist *here);
+t_dlist	*ft_dlstnew(void *content, size_t size, gc func);
+t_dlist	*ft_dlstlast(t_dlist *from);
+t_dlist	*ft_dlstfirst(t_dlist *from);
 size_t	ft_dlstsize(t_dlist	*from);
 t_dlist	*ft_dlstadd_back(t_dlist **head, t_dlist *new_node);
 t_dlist	*ft_dlstadd_front(t_dlist **head, t_dlist *new_node);
@@ -78,7 +78,7 @@ void	*ft_memcpy(void *dst, const void *src, size_t n);
 void	*ft_memmove(void *dst, const void *src, size_t len);
 void	*ft_memset(void *b, int c, size_t len);
 char	*ft_strchr(const char *s, int c);
-char	*ft_strdup(const char *s1);
+char	*ft_strdup(const char *s1, gc func);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize);
 size_t	ft_strlen(const char *s);
@@ -88,12 +88,12 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_strrchr(const char *s, int c);
 int		ft_tolower(int c);
 int		ft_toupper(int c);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strtrim(char const *s1, char const *set);
-char	**ft_split(char const *s, char c);
-char	*ft_itoa(int n);
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+char	*ft_substr(char const *s, unsigned int start, size_t len, gc func);
+char	*ft_strjoin(char const *s1, char const *s2, gc func);
+char	*ft_strtrim(char const *s1, char const *set, gc func);
+char	**ft_split(char const *s, char c, gc func);
+char	*ft_itoa(int n, gc func);
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char), gc func);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));
 void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
@@ -108,7 +108,7 @@ typedef struct s_list
 	struct s_list	*next;
 }					t_list;
 
-t_list	*ft_lstnew(void *content);
+t_list	*ft_lstnew(void *content, gc func);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);

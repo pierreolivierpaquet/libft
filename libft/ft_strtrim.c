@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaquet <marvin@42quebec.com>              +#+  +:+       +#+        */
+/*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 09:33:10 by ppaquet           #+#    #+#             */
-/*   Updated: 2023/02/21 09:33:11 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/05/04 22:23:23 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	char_vali(char const c, char const	*set)
 	return (0);
 }
 
-char	*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char const *s1, char const *set, gc func)
 {
 	char		*trimd;
 	size_t		i1;
@@ -41,7 +41,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	i2 = ft_strlen(s1);
 	while (i2 > i1 && char_vali(s1[i2 - 1], set) == 1)
 		i2--;
-	trimd = (char *)malloc((i2 - i1 + 1) * sizeof(*s1));
+	trimd = (char *)ft_alloc(CALLOC, i2 - i1 + 1, sizeof(*s1), func);
 	if (trimd == NULL)
 		return (NULL);
 	i = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaquet <marvin@42quebec.com>              +#+  +:+       +#+        */
+/*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 09:33:30 by ppaquet           #+#    #+#             */
-/*   Updated: 2023/02/21 09:33:32 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/05/04 22:13:02 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,16 @@ static char	**free_all(char **str, int n)
 	i = (n - 1);
 	while (i >= 0)
 	{
-		free(str[i]);
+		// free(str[i]);
+		ft_safe_free((void **)&str[i], ft_strlen(str[i]), true);
 		i--;
 	}
-	free(str);
+	// free(str);
+	ft_safe_free((void **)&str, n, true);
 	return (NULL);
 }
 
-static char	**head_splitter(char **tab, const char *s, const char c)
+static char	**head_splitter(char **tab, const char *s, const char c, gc func)
 {
 	int			i;
 	int			j;
@@ -79,7 +81,10 @@ static char	**head_splitter(char **tab, const char *s, const char c)
 		if (s[i] != c)
 		{
 			l_c = letter_count(&s[i], c);
-			tab[j] = malloc((l_c + 1) * sizeof(char));
+			tab[j] = (char *)ft_alloc(CALLOC, l_c + 1, sizeof(char), func);
+			// TEST
+			if (j == 2) {tab[j] = NULL; }
+			// TEST END
 			if (!tab[j])
 				return (free_all(tab, j));
 			ft_strlcpy(tab[j], &s[i], l_c + 1);
@@ -93,15 +98,15 @@ static char	**head_splitter(char **tab, const char *s, const char c)
 	return (tab);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c, gc func)
 {
 	char	**tab;
 
 	if (!s)
 		return (NULL);
-	tab = malloc((word_count(s, c) + 1) * sizeof(*tab));
+	tab = ft_alloc(CALLOC, word_count(s, c) + 1, sizeof(*tab), func);
 	if (!tab)
 		return (NULL);
-	tab = head_splitter(tab, s, c);
+	tab = head_splitter(tab, s, c, func);
 	return (tab);
 }

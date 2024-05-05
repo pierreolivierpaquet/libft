@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaquet <marvin@42quebec.com>              +#+  +:+       +#+        */
+/*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 09:34:02 by ppaquet           #+#    #+#             */
-/*   Updated: 2023/02/21 09:34:03 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/05/04 22:31:45 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char), gc func)
 {
 	char	*buf;
 	size_t	i;
@@ -22,7 +22,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 		return (NULL);
 	i = 0;
 	len = ft_strlen(s);
-	buf = (char *)malloc((len + 1) * sizeof(*buf));
+	buf = (char *)ft_alloc(CALLOC, len + 1, sizeof(*buf), func);
 	if (buf == NULL)
 		return (NULL);
 	while (i < len)

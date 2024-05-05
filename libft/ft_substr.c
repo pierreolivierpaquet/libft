@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaquet <marvin@42quebec.com>              +#+  +:+       +#+        */
+/*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 09:32:32 by ppaquet           #+#    #+#             */
-/*   Updated: 2023/02/21 09:32:33 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/05/04 22:20:48 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len)
+char	*ft_substr(char const *s, unsigned int start, size_t len, gc func)
 {
 	char		*sub;
 	size_t		i;
@@ -29,7 +29,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	}
 	if (start + len > ft_strlen(s))
 		len = ft_strlen(s) - start;
-	sub = (char *)malloc((len + 1) * sizeof(*sub));
+	sub = (char *)ft_alloc(CALLOC, len + 1, sizeof(*sub), func);
 	if (!sub)
 		return (NULL);
 	i = start;

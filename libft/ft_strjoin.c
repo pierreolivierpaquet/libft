@@ -3,23 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaquet <marvin@42quebec.com>              +#+  +:+       +#+        */
+/*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 09:32:50 by ppaquet           #+#    #+#             */
-/*   Updated: 2023/02/21 09:32:51 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/05/04 22:25:38 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin(char const *s1, char const *s2, gc func)
 {
 	char	*j;
 	int		i;
 
 	if (!s1 && !s2)
 		return (NULL);
-	j = (char *)malloc(((ft_strlen(s1) + ft_strlen(s2)) + 1) * sizeof(*j));
+	j = (char *)ft_alloc(CALLOC, ft_strlen(s1) + ft_strlen(s2) + 1, sizeof(*j), func);
 	if (j == NULL)
 		return (NULL);
 	i = 0;

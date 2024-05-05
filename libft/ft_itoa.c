@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaquet <marvin@42quebec.com>              +#+  +:+       +#+        */
+/*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 09:33:45 by ppaquet           #+#    #+#             */
-/*   Updated: 2023/02/21 09:33:47 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/05/04 21:09:44 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	nbr_len(long int n)
 	return (i);
 }
 
-char	*ft_itoa(int n)
+char	*ft_itoa(int n, gc func)
 {
 	long int	n_buf;
 	char		*a;
@@ -35,7 +35,7 @@ char	*ft_itoa(int n)
 
 	n_buf = (long int)n;
 	len = nbr_len(n_buf);
-	a = (char *)malloc((len + 1) * sizeof(*a));
+	a = (char *)ft_alloc(CALLOC, len + 1, sizeof(*a), func);
 	if (a == NULL)
 		return (NULL);
 	a[len] = '\0';

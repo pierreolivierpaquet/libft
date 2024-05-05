@@ -6,13 +6,13 @@
 /*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:31:58 by ppaquet           #+#    #+#             */
-/*   Updated: 2024/02/23 22:12:54 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/05/04 20:28:39 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_dlist	*ft_dlstnew( void *content, size_t size, mem_track func)
+t_dlist	*ft_dlstnew(void *content, size_t size, gc func)
 {
 	t_dlist	*new;
 
