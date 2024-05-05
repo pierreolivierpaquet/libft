@@ -6,7 +6,7 @@
 /*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 10:46:35 by ppaquet           #+#    #+#             */
-/*   Updated: 2024/05/04 23:54:41 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/05/05 15:20:21 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,15 @@
 # include	<stdio.h> // printf()
 # include	<stdbool.h>
 
-/***************************** MEMORY ALLOCATION ******************************/
+///	------------------------------------------------ @category MEMORY ALLOCATION
+
+///	@brief	Safe free function pointer (prototype).
+typedef void	*(*ft_free)(void **, size_t size, bool track);
+
 
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t count, size_t size);
-
-///------------------------------------------------------------ @category ADDONS
+void	*ft_safe_free(void **to_free, size_t size, bool track);
 
 /// @brief Type of memory allocation.
 typedef enum s_alloc_type
@@ -36,8 +39,9 @@ typedef enum s_alloc_type
 # define	TRY_ALLOC	10000
 #endif	/*	TRY_ALLOC	*/
 
+///	------------------------------------------------------ @category LINKED LIST
 
-/// @brief Double linked list.
+/// @brief Generic doubly linked list.
 typedef struct s_dlist
 {
 	void			*content;
@@ -46,7 +50,28 @@ typedef struct s_dlist
 	struct s_dlist	*previous;
 }					t_dlist;
 
+///	@brief Garbage collector function (prototype).
 typedef t_dlist *(*gc)(void *, size_t n);
+
+///	@brief Generic linked list.
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}					t_list;
+
+t_list	*ft_lstnew(void *content, gc func);
+void	ft_lstadd_front(t_list **lst, t_list *new);
+int		ft_lstsize(t_list *lst);
+t_list	*ft_lstlast(t_list *lst);
+void	ft_lstadd_back(t_list **lst, t_list *new);
+void	ft_lstdelone(t_list *lst, void (*del)(void *));
+void	ft_lstclear(t_list **lst, void (*del)(void *));
+void	ft_lstiter(t_list *lst, void (*f)(void *));
+t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+
+///	------------------------------------------------ @category GARBAGE COLLECTOR
+
 void	*ft_alloc(e_alloc_type type, size_t count, size_t size, gc func);
 t_dlist	*ft_gc(void *newly_allocated, size_t size);
 void	*ft_gc_destroy( void );
@@ -58,11 +83,10 @@ size_t	ft_dlstsize(t_dlist	*from);
 t_dlist	*ft_dlstadd_back(t_dlist **head, t_dlist *new_node);
 t_dlist	*ft_dlstadd_front(t_dlist **head, t_dlist *new_node);
 
-typedef void	*(*ft_free)(void **, size_t size, bool track);
 void	*ft_dlstdel_one(t_dlist **delete, ft_free func);
 void	*ft_dlst_detach(t_dlist **head, t_dlist *detach, ft_free func);
 void	ft_dlst_clear(t_dlist **head, ft_free func);
-void	*ft_safe_free(void **to_free, size_t size, bool track);
+
 
 /******************************************************************************/
 
@@ -102,20 +126,5 @@ void	ft_putnbr_fd(int n, int fd);
 
 /******************************** LINKED LIST *********************************/
 
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}					t_list;
-
-t_list	*ft_lstnew(void *content, gc func);
-void	ft_lstadd_front(t_list **lst, t_list *new);
-int		ft_lstsize(t_list *lst);
-t_list	*ft_lstlast(t_list *lst);
-void	ft_lstadd_back(t_list **lst, t_list *new);
-void	ft_lstdelone(t_list *lst, void (*del)(void *));
-void	ft_lstclear(t_list **lst, void (*del)(void *));
-void	ft_lstiter(t_list *lst, void (*f)(void *));
-t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 
 #endif

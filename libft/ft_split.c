@@ -6,7 +6,7 @@
 /*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 09:33:30 by ppaquet           #+#    #+#             */
-/*   Updated: 2024/05/04 22:13:02 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/05/05 13:01:27 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,6 @@ static char	**head_splitter(char **tab, const char *s, const char c, gc func)
 		{
 			l_c = letter_count(&s[i], c);
 			tab[j] = (char *)ft_alloc(CALLOC, l_c + 1, sizeof(char), func);
-			// TEST
-			if (j == 2) {tab[j] = NULL; }
-			// TEST END
 			if (!tab[j])
 				return (free_all(tab, j));
 			ft_strlcpy(tab[j], &s[i], l_c + 1);
