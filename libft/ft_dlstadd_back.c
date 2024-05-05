@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dbl_lstadd_back.c                               :+:      :+:    :+:   */
+/*   ft_dlstadd_back.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 21:07:00 by ppaquet           #+#    #+#             */
-/*   Updated: 2024/02/22 18:54:00 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/05/05 16:12:49 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@
 ///			be freed immediately, in the case of a NULL head.
 t_dlist	*ft_dlstadd_back(t_dlist **head, t_dlist *new_node)
 {
-	t_dlist *iterator;
+	t_dlist	*iterator;
 
 	iterator = NULL;
 	if (head == NULL || new_node == NULL)
-		return (new_node) ;
+		return (new_node);
 	if (*head == NULL)
 		*head = new_node;
 	else
@@ -33,5 +33,5 @@ t_dlist	*ft_dlstadd_back(t_dlist **head, t_dlist *new_node)
 		iterator->next = new_node;
 		new_node->previous = iterator;
 	}
-	return (new_node) ;
+	return (new_node);
 }

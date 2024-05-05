@@ -6,14 +6,14 @@
 /*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 09:33:10 by ppaquet           #+#    #+#             */
-/*   Updated: 2024/05/04 22:23:23 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/05/05 16:16:35 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
 static int	char_vali(char const c, char const	*set)
-{	
+{
 	size_t	i;
 
 	i = 0;
@@ -26,7 +26,7 @@ static int	char_vali(char const c, char const	*set)
 	return (0);
 }
 
-char	*ft_strtrim(char const *s1, char const *set, gc func)
+char	*ft_strtrim(char const *s1, char const *set, t_gc func)
 {
 	char		*trimd;
 	size_t		i1;

@@ -6,7 +6,7 @@
 /*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 20:57:33 by ppaquet           #+#    #+#             */
-/*   Updated: 2024/02/22 18:56:51 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/05/05 15:48:27 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 size_t	ft_dlstsize(t_dlist *from)
 {
 	t_dlist	*iterator;
-	size_t		size;
+	size_t	size;
 
 	iterator = from;
 	size = 0;

@@ -6,12 +6,12 @@
 /*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 12:14:33 by ppaquet           #+#    #+#             */
-/*   Updated: 2024/02/21 20:18:32 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/05/05 16:11:24 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include	"libft.h"
-#include	<stdint.h>
+#include "libft.h"
+#include <stdint.h>
 
 void	*ft_calloc(size_t count, size_t size)
 {

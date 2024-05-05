@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ppaquet <marvin@42quebec.com>              +#+  +:+       +#+        */
+/*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 15:13:21 by ppaquet           #+#    #+#             */
-/*   Updated: 2023/02/27 15:13:22 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/05/05 15:46:38 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *))
 		temp = (f)((*lst).content);
 		new_tl = ft_lstnew(temp);
 		if (new_tl == NULL)
-		{	
+		{
 			ft_lstclear(&head, del);
 			free (temp);
 			return (NULL);

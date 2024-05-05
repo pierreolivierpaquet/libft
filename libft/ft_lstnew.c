@@ -6,13 +6,13 @@
 /*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/27 15:09:36 by ppaquet           #+#    #+#             */
-/*   Updated: 2024/05/04 22:32:30 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/05/05 16:16:35 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_list	*ft_lstnew(void *content, gc func)
+t_list	*ft_lstnew(void *content, t_gc func)
 {
 	t_list	*head;
 

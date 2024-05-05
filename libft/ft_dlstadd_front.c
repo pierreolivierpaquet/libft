@@ -6,7 +6,7 @@
 /*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 11:57:18 by ppaquet           #+#    #+#             */
-/*   Updated: 2024/02/22 18:55:30 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/05/05 16:11:10 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 t_dlist	*ft_dlstadd_front(t_dlist **head, t_dlist *new_node)
 {
-	t_dlist *iterator;
-	
+	t_dlist	*iterator;
+
 	iterator = NULL;
 	if (head == NULL || new_node == NULL)
 		return (new_node);

@@ -6,13 +6,13 @@
 /*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 09:32:32 by ppaquet           #+#    #+#             */
-/*   Updated: 2024/05/04 22:20:48 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/05/05 16:16:35 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_substr(char const *s, unsigned int start, size_t len, gc func)
+char	*ft_substr(char const *s, unsigned int start, size_t len, t_gc func)
 {
 	char		*sub;
 	size_t		i;

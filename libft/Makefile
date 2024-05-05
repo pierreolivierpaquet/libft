@@ -6,7 +6,7 @@
 #    By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/14 10:45:50 by ppaquet           #+#    #+#              #
-#    Updated: 2024/03/20 23:44:25 by ppaquet          ###   ########.fr        #
+#    Updated: 2024/05/05 16:17:28 by ppaquet          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,7 +67,7 @@ ft_dlstadd_front.c \
 ft_dlstdel_one.c \
 ft_dlst_detach.c \
 ft_dlst_clear.c \
-ft_safe_free.c \
+ft_free.c \
 
 SRCS_BONUS = \
 ft_lstnew.c \

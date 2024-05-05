@@ -6,7 +6,7 @@
 /*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/21 19:00:03 by ppaquet           #+#    #+#             */
-/*   Updated: 2024/05/04 23:54:36 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/05/05 16:29:26 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,29 +16,28 @@
 ///			the allocated block of memory.
 /// @param newly_allocated If NULL, the function acts like a getter.
 /// @returns A pointer to the first node of the garbage collector linked list.
-t_dlist *ft_gc(void *newly_allocated, size_t size)
+t_dlist	*ft_gc(void *newly_allocated, size_t size)
 {
-	static t_dlist *gc;
+	static t_dlist	*t_gc;
 
-	if (gc == NULL)
+	if (t_gc == NULL)
 	{
-		gc = ft_alloc(CALLOC, 1, sizeof(*gc), NULL);
-
-		if (gc != NULL)
+		t_gc = ft_alloc(CALLOC, 1, sizeof(*t_gc), NULL);
+		if (t_gc != NULL)
 		{
-			gc->content = newly_allocated;
-			gc->size = size;
+			t_gc->content = newly_allocated;
+			t_gc->size = size;
 		}
-		return (gc);
+		return (t_gc);
 	}
-	if (gc->content == NULL && newly_allocated != NULL)
+	if (t_gc->content == NULL && newly_allocated != NULL)
 	{
-		gc->content = newly_allocated;
-		gc->size = size;
+		t_gc->content = newly_allocated;
+		t_gc->size = size;
 	}
 	else if (newly_allocated != NULL)
-		ft_dlstadd_back(&gc, ft_dlstnew(newly_allocated, size, NULL));
-	return (gc);
+		ft_dlstadd_back(&t_gc, ft_dlstnew(newly_allocated, size, NULL));
+	return (t_gc);
 }
 
 ///	@brief Suppresses all the allocated memory by the garbage collector.
@@ -53,8 +52,8 @@ void	*ft_gc_destroy( void )
 	{
 		to_free = retrieve_gc;
 		retrieve_gc = retrieve_gc->next;
-		ft_safe_free(&(to_free->content), to_free->size, false);
-		ft_safe_free((void *)&to_free, sizeof(*to_free), false);
+		ft_free(&(to_free->content), to_free->size, false);
+		ft_free((void *)&to_free, sizeof(*to_free), false);
 	}
 	return (NULL);
 }
@@ -66,7 +65,7 @@ void	*ft_gc_destroy( void )
 /// @param func Function pointer to the garbage collector. If NULL, memory
 ///				allocation will not be tracked.
 /// @returns The newly allocated pointer.
-void	*ft_alloc(e_alloc_type type, size_t count, size_t size, gc func)
+void	*ft_alloc(t_alloc_type type, size_t count, size_t size, t_gc func)
 {
 	void	*new_pointer;
 	int		tries;

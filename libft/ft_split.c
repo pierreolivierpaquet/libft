@@ -6,7 +6,7 @@
 /*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 09:33:30 by ppaquet           #+#    #+#             */
-/*   Updated: 2024/05/05 13:01:27 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/05/05 16:31:15 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,16 +59,14 @@ static char	**free_all(char **str, int n)
 	i = (n - 1);
 	while (i >= 0)
 	{
-		// free(str[i]);
-		ft_safe_free((void **)&str[i], ft_strlen(str[i]), true);
+		ft_free((void **)&str[i], ft_strlen(str[i]), true);
 		i--;
 	}
-	// free(str);
-	ft_safe_free((void **)&str, n, true);
+	ft_free((void **)&str, n, true);
 	return (NULL);
 }
 
-static char	**head_splitter(char **tab, const char *s, const char c, gc func)
+static char	**head_splitter(char **tab, const char *s, const char c, t_gc func)
 {
 	int			i;
 	int			j;
@@ -95,7 +93,7 @@ static char	**head_splitter(char **tab, const char *s, const char c, gc func)
 	return (tab);
 }
 
-char	**ft_split(char const *s, char c, gc func)
+char	**ft_split(char const *s, char c, t_gc func)
 {
 	char	**tab;
 

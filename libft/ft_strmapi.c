@@ -6,13 +6,13 @@
 /*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 09:34:02 by ppaquet           #+#    #+#             */
-/*   Updated: 2024/05/04 22:31:45 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/05/05 16:16:35 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strmapi(char const *s, char (*f)(unsigned int, char), gc func)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char), t_gc func)
 {
 	char	*buf;
 	size_t	i;

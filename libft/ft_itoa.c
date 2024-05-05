@@ -6,7 +6,7 @@
 /*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 09:33:45 by ppaquet           #+#    #+#             */
-/*   Updated: 2024/05/04 21:09:44 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/05/05 16:16:35 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	nbr_len(long int n)
 	return (i);
 }
 
-char	*ft_itoa(int n, gc func)
+char	*ft_itoa(int n, t_gc func)
 {
 	long int	n_buf;
 	char		*a;

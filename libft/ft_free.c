@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_safe_free.c                                     :+:      :+:    :+:   */
+/*   ft_free.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ppaquet <pierreolivierpaquet@hotmail.co    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 18:33:55 by ppaquet           #+#    #+#             */
-/*   Updated: 2024/05/04 23:42:28 by ppaquet          ###   ########.fr       */
+/*   Updated: 2024/05/05 15:45:50 by ppaquet          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ static void	*ft_gc_free(void **to_free)
 	{
 		if ((*to_free) == (void *)allocations->content)
 		{
-			ft_safe_free(&allocations->content, allocations->size, false);
+			ft_free(&allocations->content, allocations->size, false);
 			allocations->size = 0;
-			return( allocations->content );
+			return (allocations->content);
 		}
 		allocations = allocations->next;
 	}
@@ -39,7 +39,7 @@ static void	*ft_gc_free(void **to_free)
 /// @param size Size, in bytes.
 /// @param track	Wether the pointer needs to be processed in the
 ///					garbage collector or not.
-void	*ft_safe_free(void **to_free, size_t size, bool track)
+void	*ft_free(void **to_free, size_t size, bool track)
 {
 	if (to_free == NULL || *to_free == NULL)
 		return (NULL);
